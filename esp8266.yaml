@@ -34,25 +34,47 @@ i2c:
     sda: GPIO4
 
 sensor:
+  # ===== AHT20：温度 + 湿度（关键：加 variant）=====
   - platform: aht10
+    variant: AHT20
+    i2c_id: i2c_bus
+    address: 0x38
     temperature:
-      name: "ESP8266_AHT10_Temperature"
+      name: "ESP8266_AHT20_Temperature"
       unit_of_measurement: "°C"
       accuracy_decimals: 1
       icon: "mdi:thermometer"
     humidity:
-      name: "ESP8266_AHT10_Humidity"
+      name: "ESP8266_AHT20_Humidity"
       unit_of_measurement: "%"
       accuracy_decimals: 1
       icon: "mdi:water-percent"
     update_interval: 60s
 
+  # ===== BMP280：气压（顺带读它自己的温度做对比）=====
+  - platform: bmp280_i2c
+    i2c_id: i2c_bus
+    address: 0x77             # 日志确认在 0x77，若以后换模块扫到 0x76 就改这里
+    temperature:
+      name: "ESP8266_BMP280_Temperature"
+      unit_of_measurement: "°C"
+      accuracy_decimals: 1
+      icon: "mdi:thermometer"
+    pressure:
+      name: "ESP8266_BMP280_Pressure"
+      unit_of_measurement: "hPa"
+      accuracy_decimals: 1
+      icon: "mdi:gauge"
+    update_interval: 60s
+
+  # WiFi 信号
   - platform: wifi_signal
     name: "ESP8266_WiFi_Signal"
     unit_of_measurement: "dBm"
     update_interval: 60s
     icon: "mdi:wifi"
 
+  # 运行时长
   - platform: uptime
     name: "ESP8266_Uptime"
     unit_of_measurement: "h"
@@ -61,5 +83,6 @@ sensor:
     filters:
       - multiply: 0.000277778
     icon: "mdi:timer-outline"
+
 
 
