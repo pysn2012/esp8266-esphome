@@ -40,12 +40,12 @@ sensor:
     i2c_id: i2c_bus
     address: 0x38
     temperature:
-      name: "ESP8266_AHT20_Temperature"
+      name: "1.温度"
       unit_of_measurement: "°C"
       accuracy_decimals: 1
       icon: "mdi:thermometer"
     humidity:
-      name: "ESP8266_AHT20_Humidity"
+      name: "2.湿度"
       unit_of_measurement: "%"
       accuracy_decimals: 1
       icon: "mdi:water-percent"
@@ -56,12 +56,12 @@ sensor:
     i2c_id: i2c_bus
     address: 0x77             # 日志确认在 0x77，若以后换模块扫到 0x76 就改这里
     temperature:
-      name: "ESP8266_BMP280_Temperature"
+      name: "4.气压的温度"
       unit_of_measurement: "°C"
       accuracy_decimals: 1
       icon: "mdi:thermometer"
     pressure:
-      name: "ESP8266_BMP280_Pressure"
+      name: "3.气压"
       unit_of_measurement: "hPa"
       accuracy_decimals: 1
       icon: "mdi:gauge"
@@ -69,14 +69,14 @@ sensor:
 
   # WiFi 信号
   - platform: wifi_signal
-    name: "ESP8266_WiFi_Signal"
+    name: "5.WIFI信号"
     unit_of_measurement: "dBm"
     update_interval: 60s
     icon: "mdi:wifi"
 
   # 运行时长
   - platform: uptime
-    name: "ESP8266_Uptime"
+    name: "6.待机时间"
     unit_of_measurement: "h"
     accuracy_decimals: 1
     update_interval: 60s
